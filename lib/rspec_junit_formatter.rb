@@ -27,7 +27,12 @@ private
 
   def xml_dump_examples
     examples.each do |example|
-      send :"xml_dump_#{result_of(example)}", example
+      meth = :"xml_dump_#{result_of(example)}"
+      if respond_to? meth
+        send meth, example
+      else
+        puts "Could not handle #{example}"
+      end
     end
   end
 
