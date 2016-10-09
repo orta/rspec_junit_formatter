@@ -31,7 +31,7 @@ private
       if respond_to? meth
         send meth, example
       else
-        puts "Could not handle #{example}"
+        puts "Could not handle #{RSpec::Core::Notifications::ExampleNotification.for(example.example)}"
       end
     end
   end
